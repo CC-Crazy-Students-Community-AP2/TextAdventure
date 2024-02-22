@@ -79,6 +79,6 @@ public abstract class Methods {
     }
 
     protected static String getCurrentLive(int playerLives) {
-        return (playerLives < 3 ? "\t\tDu hast noch " : "\t\tDu hast nur noch ") + playerLives + " Leben.";
+        return (playerLives > 3 ? "\t\tDu hast noch " : "\t\tDu hast nur noch ") + playerLives + " Leben.";
     }
 }

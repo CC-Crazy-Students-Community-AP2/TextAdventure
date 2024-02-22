@@ -13,24 +13,26 @@ import java.util.List;
 @SpringBootApplication
 public class TextAdventureApplication extends Methods {
 
+    private static final int MAX_PLAYER_LIVES = 6;
+    private static final int NUM_INTERACTIONS = 10;
+
     public static void main(String[] args) {
-        int playerLives = 6;
-        int userChoice = 0;
+        int playerLives = MAX_PLAYER_LIVES;
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         List<Interaction> interactions = generateRandomInteractions();
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < NUM_INTERACTIONS; i++) {
             emptyLines(2);
-//            userChoice = getUserChoice(reader, i);
+            int userChoice = 0;
             Interaction currentInteraction = interactions.get(i);
-            emptyLines(30);
 
-            // Debug
-            System.out.println("Begegnung " + (i + 1) + ": " + currentInteraction.getName() + " (" + currentInteraction.getInteractionType().getUserChoice() + ")");
+//            Debug
+//            System.out.println("Begegnung " + (i + 1) + ": " + currentInteraction.getName() + " (" + currentInteraction.getInteractionType().getUserChoice() + ")");
+
             userChoice = getUserChoice(reader, i);
-
-//            System.out.println("Begegnung " + (i + 1) + ": " + currentInteraction.getName());
+            emptyLines(30);
+            System.out.println("Begegnung " + (i + 1) + ": " + currentInteraction.getName());
             playerLives -= handleInteraction(currentInteraction, userChoice);
             System.out.println(getCurrentLive(playerLives));
 

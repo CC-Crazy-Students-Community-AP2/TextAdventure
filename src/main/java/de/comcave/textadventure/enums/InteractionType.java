@@ -2,9 +2,13 @@ package de.comcave.textadventure.enums;
 
 import lombok.Getter;
 
+import java.util.Arrays;
+
 @Getter
 public enum InteractionType {
-    FEED(1), PET(2), ATTACK(3);
+    FEED(1),
+    PET(2),
+    ATTACK(3);
 
     private final int userChoice;
 
@@ -13,11 +17,10 @@ public enum InteractionType {
     }
 
     public static InteractionType getByUserChoice(int choice) {
-        for (InteractionType type : values()) {
-            if (type.getUserChoice() == choice) {
-                return type;
-            }
-        }
-        throw new IllegalArgumentException("Ungültige Benutzerwahl: " + choice);
+        return Arrays
+                .stream(values())
+                .filter(type -> type.getUserChoice() == choice)
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("Ungültige Benutzerwahl: " + choice));
     }
 }
